@@ -35,6 +35,7 @@ d3.dsv(',', 'kap.csv', function (d) {
   }
 }).then(function (csv) {
 
+  //only get the data between two dates
   data = csv.filter(function (d) {
     return d.date > startDate && d.date < endDate;
   });
@@ -65,7 +66,7 @@ d3.dsv(',', 'kap.csv', function (d) {
     .range([0, height]);
 
   r.domain([0, 100])
-    .range([5, 0.1]);
+    .range([6, 0.1]);
 
   var svg = d3.select("#chart").append("svg")
     .attr("id", "svg")
@@ -87,13 +88,6 @@ d3.dsv(',', 'kap.csv', function (d) {
       return r(d.kap);
     })
     .style('fill', function (d) {
-      // if(d.kap == 100){
-      //   return 'green';
-      // }
-      // else if(d.kap < 80){
-      //   return 'red';
-      // }
-      // else return 'none';
       return 'black';
     })
     .style('stroke', 'black');
@@ -104,7 +98,6 @@ d3.dsv(',', 'kap.csv', function (d) {
     .selectAll("text")
     .attr("y", 0)
     .attr("x", 9)
-    //.attr("dy", ".35em")
     .attr("transform", "rotate(-45)")
     .style("text-anchor", "start");;
 
